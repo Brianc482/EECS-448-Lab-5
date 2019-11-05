@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <form action="viewUsersPosts.php" method="post" name="myForm" onsubmit="return validateForm()">
+      <?php
+      $mysqli = new mysqli("mysql.eecs.ku.edu", "bclark421", "aij4in3a", "bclark421");
+      /* check connection */
+      if ($mysqli->connect_error) {
+          printf("Connect failed: %s\n", $mysqli->connect_error);
+          exit();
+      }
+      $query = "SELECT * FROM Posts";
+      $result = $mysqli->query($query);
+
+      while($row = $result->fetch_assoc()) {
+          echo "Author: " . $row["author_id"] . "<br>Post ID: " . $row["post_id"] . "<br>";
+          echo "Post: " . $row["content"] . "<br><br>";
+      }
+      $mysqli->close();
+
+      ?>
+    Select a User:
+    <br>
+  <select name="chosen_u">
+    <?php
+    $mysqli = new mysqli("mysql.eecs.ku.edu", "bclark421", "aij4in3a", "bclark421");
+    /* check connection */
+    if ($mysqli->connect_error) {
+        printf("Connect failed: %s\n", $mysqli->connect_error);
+        exit();
+    }
+
+    $query = "SELECT user_id FROM Users;";
+    $result = $mysqli->query($query);
+
+      while($row = $result->fetch_assoc()) {
+        $user = $row["user_id"];
+        echo "<option value='$user'>$user</option>";
+      }
+
+    /* close connection */
+    $mysqli->close();
+	?>
+  </select>
+    <input type="submit" value="Submit">
+  </body>
+</html>

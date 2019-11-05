@@ -1,0 +1,30 @@
+h1 {
+  color: black;
+  font-family: georgia;
+  font-size: 25pt;
+  text-align: left;
+}
+h2 {
+  color: black;
+  font-family: georgia;
+  font-size: 40pt;
+  text-align: center;
+}
+
+body {
+  background-image: url(beach.gif);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+a
+{
+    color: black;
+    font-size: 15pt;
+}
+
+a:hover
+{
+    background-color: yellow;
+    color: black;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <form action="createPosts.php" method="post" name="myForm" onsubmit="return validateForm()">
+    Create A New Post:
+    <br>
+    Username: <input type="text" name="u_name">
+    <br>
+    Write Post here:
+    <br>
+    <textarea type="text" rows="10" cols="70" name="post1"></textarea>
+    <br>
+    <?php
+      $mysqli = new mysqli("mysql.eecs.ku.edu", "bclark421", "aij4in3a", "bclark421");
+
+      $query = "SELECT * FROM Posts";
+      $result = $mysqli.query($query);
+
+      while($row = $result.fetch_assoc()) {
+        echo "Poster: ".$row["author_id"]." Post ID: ".$row["post_id"]."<br>";
+        echo "Post: " . $row["content"] . "<br><br>";
+      }
+      $mysqli.close();
+    ?>
+
+    <input type="submit" value="Submit">
+  </body>
+</html>
